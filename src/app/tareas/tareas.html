@@ -1,0 +1,18 @@
+<div>
+	<input [(ngModel)]="nuevaTarea" placeholder="Nueva tarea" />
+	<button (click)="agregarTarea()">Agregar</button>
+</div>
+
+<div>
+	<button (click)="setFiltro('todas')">Todas</button>
+	<button (click)="setFiltro('completadas')">Completadas</button>
+	<button (click)="setFiltro('pendientes')">Pendientes</button>
+</div>
+
+<ul>
+	<li *ngFor="let tarea of filtrarTareas()">
+		<input type="checkbox" [checked]="tarea.completada" (change)="marcarCompletada(tarea.id)" />
+		<span [ngClass]="{'completada': tarea.completada}">{{ tarea.nombre }}</span>
+		<button (click)="eliminarTarea(tarea.id)">Eliminar</button>
+	</li>
+</ul>
